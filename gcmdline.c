@@ -3,15 +3,22 @@
 /*
   Author:
     Frank da Cruz
-    The Kermit Project
-    Columbia University
-    612 West 115th Street
-    New York NY 10025-7799  USA
-    http://www.columbia.edu/kermit/
-    kermit@columbia.edu
+    Originally at:
+      The Kermit Project
+      Columbia University
+      612 West 115th Street
+      New York NY 10025-7799  USA
+      http://www.columbia.edu/kermit/
+      kermit@columbia.edu
+    As of October 2011:
+      The New Open-Source Kermit Project
+      Bronx NY
+      http://kermitproject.org
+      kermit@kermitproject.org
 
-  Copyright (C) 1999,
+  Copyright (C) 1999, 2021,
   The Trustees of Columbia University in the City of New York.
+  Issued under the GNU General Public License as it existed in 1999.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,10 +29,6 @@
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 #include <stdio.h>
@@ -53,7 +56,8 @@ _MYPROTOTYPE( VOID fatal, (char *) );
 _MYPROTOTYPE( VOID usage, (void) );
 
 #ifndef NOGETENV
-_MYPROTOTYPE( char * getenv, (char *) );
+/* getenv prototype commented out in G-Kermit 2.0 */
+/* _MYPROTOTYPE( char * getenv, (char *) ); */
 #define GARGC 32
 #define GBUFSIZ 256
 static char gbuf[GBUFSIZ], *gargs[GARGC], *gptr = NULL;
@@ -361,6 +365,6 @@ usage() {
     fprintf(stderr," -q      Quiet (suppress messages)\n");
     fprintf(stderr," -d [fn] Debug to ./debug.log [or specified file]\n");
     fprintf(stderr," -h      Help (this message)\n");
-    if (*url || *email)
-      fprintf(stderr,"More info: %s <%s>",url,email);
+    if (*url) fprintf(stderr,  "Web:   %s\n",url);
+    if (*email) fprintf(stderr,"Email: %s\n",email);
 }

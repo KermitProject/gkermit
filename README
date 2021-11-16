@@ -1,6 +1,10 @@
 G-Kermit  --  GNU Kermit                                          -*- text -*-
 
 Version 1.00 : 25 December 1999
+Version 2.00 : 26 May 2021
+
+Version 2.00 is identical to 1.00 except that the source code has
+been tailored to build successfully on modern Unix platforms.
 
 Author:
   Frank da Cruz
@@ -9,7 +13,7 @@ Author:
   612 West 115th Street
   New York NY 10025-7799  USA
   fdc@columbia.edu
-
+  (now retired, but the email address still works)
 
 CONTENTS...
 
@@ -35,6 +39,9 @@ G-Kermit is a Unix program for uploading and downloading files with the
 Kermit protocol.  G-Kermit is a product of Kermit Project at Columbia
 University.  It is free software under the GNU Public License.  See the
 COPYING file for details.
+
+  This software is OSI Certified Open Source Software.
+  OSI Certified is a certification mark of the Open Source Initiative.
 
 G-Kermit is:
  . Fast
@@ -1010,5 +1017,11 @@ Kermit are available from Digital Press.  Online resources include:
   http://www.columbia.edu/kermit/    The Kermit Project website
   comp.protocols.kermit.misc         The unmoderated Kermit newsgroup
   kermit-support@columbia.edu        Technical support
+
+Also visit:
+
+  http://www.columbia.edu/kermit/gkermit.html
+
+for a more up-to-date version of this file, complete with download links.
 
 (End of G-Kermit README)

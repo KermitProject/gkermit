@@ -2,15 +2,24 @@
 /*
   Author:
     Frank da Cruz
-    The Kermit Project
-    Columbia University
-    612 West 115th Street
-    New York NY 10025-7799  USA
-    http://www.columbia.edu/kermit/
-    kermit@columbia.edu
+    Originally at:
+      The Kermit Project
+      Columbia University
+      612 West 115th Street
+      New York NY 10025-7799  USA
+      http://www.columbia.edu/kermit/
+      kermit@columbia.edu
+    As of October 2011:
+      The New Open-Source Kermit Project
+      Bronx NY
+      http://kermitproject.org
+      kermit@kermitproject.org
+    Most recent update:
+      Mon Nov 15 08:24:28 2021
 
-  Copyright (C) 1999,
+  Copyright (C) 1999, 2021
   The Trustees of Columbia University in the City of New York.
+  Issued under the GNU General Public License as it existed in 1999.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,16 +30,35 @@
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 #ifndef _GKERMIT_H
 #define _GKERMIT_H
 
+/* __APPLE__ items from Kenji Rikitake 31 May 2021 */
+
 #include <stdio.h>
+#include <errno.h>                      /* Added in G-Kermit 2.0 */
+#ifndef __APPLE__                       /* macOS with Xcode has not malloc.h */
+#include <malloc.h>                     /* Added in G-Kermit 2.0 */
+#endif /* __APPLE__ */
+#include <string.h>                     /* Added in G-Kermit 2.0 */
+#include <stdlib.h>                     /* Added in G-Kermit 2.0 */
+
+/* unistd.h might be needed for sleep() prototype */
+
+#ifndef NEEDUNISTD
+ #ifdef __APPLE__
+  #define NEEDUNISTD
+ #else
+  #ifdef __NetBSD__
+   #define NEEDUNISTD
+ #endif /* __NetBSD__ */
+ #endif /* __APPLE__ */
+#endif /* NEEDUNISTD */
+#ifdef NEEDUNISTD
+ #include <unistd.h>
+#endif /* NEEDUNISTD */
 
 /* Kermit protocol definitions */
 

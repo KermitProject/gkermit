@@ -1,30 +1,65 @@
 /* G K E R M I T  --  GNU Kermit  */
 
 /*
+  Sat Dec 25 19:22:54 1999:
   A free implementation of the Kermit file transfer protocol for UNIX.
   If you change this software, please either (a) send changes back to the
   Kermit Project to be considered for the base version; or (b) change the
   strings below to show a new version number and date and to reflect the
   person or organization responsible for the new version.
 
-  Sat Dec 25 19:22:54 1999
+  .................................
+  Wed May 26 08:47:48 2021:
+  In the years following the initial rlease of this program, which was
+  designed to be eternal, the C libraries and header files changed and
+  changed and changed to the extent that in 2021 G-Kermit 1.0 ccan't be
+  built at all an most Unix platforms, and even on those where a functional
+  executable is generated, dozens or hundreds of warnings are issued.
+  This, for code that generated zero warnings or errors when compiled
+  in 1999.  Thus version 2.0 of May 26, 2021.  The only changes are:
+
+  1. The version identification just below, and:
+  2. The inclusion of four previously unneeded header files in gkermit.h.
+
+  .................................
+  Mon Nov 15 08:31:48 2021:
+  From Kenji Rikitake, two patches added to gkermit.h for macOS with Xcode:
+
+  1. macOS with Xcode has no <malloc.h>
+  2. macOS with Xcode has the prototype of sleep() in <unistd.h>
+  Conditional if(n)def with __APPLE__ flag, dedicated for macOS.
+
+  It seems unistd.h is now required on many platforms; I now #include it
+  in all builds by default; to suppress the #include on platforms that
+  don't have unistd.h, do: make "KFLAGS=-DNOUNISTD" ...
 */
 
+/*
 char *versio = "G-Kermit CU-1.00, Columbia University, 1999-12-25";
-char *url =    "http://www.columbia.edu/kermit/";
-char *email =  "kermit@columbia.edu";
+char *versio = "G-Kermit 2.00, The Kermit Project, 2021-05-26";
+*/
+char *versio = "G-Kermit 2.01, The Kermit Project, 2021-11-15";
+char *url =    "http://www.kermitproject.org/gkermit.html";
+char *email =  "kermit@kermitproject.edu";
 /*
   Author:
     Frank da Cruz
-    The Kermit Project
-    Columbia University
-    612 West 115th Street
-    New York NY 10025-7799  USA
-    http://www.columbia.edu/kermit/
-    kermit@columbia.edu
+    Originally at:
+      The Kermit Project
+      Columbia University
+      612 West 115th Street
+      New York NY 10025-7799  USA
+      http://www.columbia.edu/kermit/
+      kermit@columbia.edu
+    As of October 2011:
+      The New Open-Source Kermit Project
+      Bronx NY
+      http://kermitproject.org
+      kermit@kermitproject.org
 
-  Copyright (C) 1999,
+  Copyright (C) 1999, 2021
   The Trustees of Columbia University in the City of New York.
+  Issued under the GNU General Public License as it existed in 1999.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,10 +70,6 @@ char *email =  "kermit@columbia.edu";
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 #ifdef POSIX
 char *build =  "POSIX";			/* Identify which build */
